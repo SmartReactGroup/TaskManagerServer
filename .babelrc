@@ -1,0 +1,10 @@
+{
+  "presets": [
+    "env"
+  ],
+  "plugins": [
+    "transform-flow-comments",
+    "transform-runtime",
+    "transform-decorators-legacy"
+  ]
+}

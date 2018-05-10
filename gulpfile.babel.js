@@ -317,10 +317,10 @@ gulp.task('jscs', () =>
 
 gulp.task('clean:tmp', () => del(['.tmp/**/*'], { dot: true }))
 
-gulp.task('start:client', (cb) =>
+gulp.task('start:client', () =>
   whenServerReady(() => {
     open(`http://localhost:${config.port}`)
-    cb()
+    // cb()
   })
 )
 

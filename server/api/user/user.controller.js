@@ -23,6 +23,7 @@ function handleError(res, statusCode) {
  * restriction: 'admin'
  */
 export function index(req, res) {
+  console.log('==========')
   return User.find({}, '-salt -password')
     .exec()
     .then((users) => {

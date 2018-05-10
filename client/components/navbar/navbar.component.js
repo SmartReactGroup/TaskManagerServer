@@ -1,5 +1,4 @@
 import { Component } from '@angular/core'
-
 import { Router } from '@angular/router'
 import { AuthService } from '../auth/auth.service'
 
@@ -13,6 +12,10 @@ export class NavbarComponent {
     {
       title: 'Home',
       link: '/home'
+    },
+    {
+      title: 'API Documentation',
+      link: '/document'
     }
   ]
   Router
@@ -24,11 +27,8 @@ export class NavbarComponent {
   static parameters = [AuthService, Router]
   constructor(authService: AuthService, router: Router) {
     this.AuthService = authService
-
     this.Router = router
-
     this.reset()
-
     this.AuthService.currentUserChanged.subscribe((user) => {
       this.currentUser = user
       this.reset()

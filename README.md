@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- [Node](http://nodejs.com/)
+- [Node](http://nodejs.com/) (at least v8)
 - [Gulp](http://gulpjs.com/) (`npm install --global gulp`)
 - [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod`
 

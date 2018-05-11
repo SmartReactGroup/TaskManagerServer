@@ -39,17 +39,16 @@ export class AuthService {
         })
         .catch((err) => {
           console.log(err)
-
           localStorage.removeItem('id_token')
         })
     }
   }
 
   /**
-     * Check if userRole is >= role
-     * @param {String} userRole - role of current user
-     * @param {String} role - role to check against
-     */
+   * Check if userRole is >= role
+   * @param {String} userRole - role of current user
+   * @param {String} role - role to check against
+   */
   static hasRole(userRole, role) {
     return constants.userRoles.indexOf(userRole) >= constants.userRoles.indexOf(role)
   }
@@ -64,12 +63,12 @@ export class AuthService {
   }
 
   /**
-     * Authenticate user and save token
-     *
-     * @param  {Object}   user     - login info
-     * @param  {Function} [callback] - function(error, user)
-     * @return {Promise}
-     */
+   * Authenticate user and save token
+   *
+   * @param  {Object}   user     - login info
+   * @param  {Function} [callback] - function(error, user)
+   * @return {Promise}
+   */
   login({ email, password }, callback) {
     return this.Http
       .post('/auth/local', {
@@ -96,9 +95,9 @@ export class AuthService {
   }
 
   /**
-     * Delete access token and user info
-     * @return {Promise}
-     */
+   * Delete access token and user info
+   * @return {Promise}
+   */
   logout() {
     localStorage.removeItem('user')
     localStorage.removeItem('id_token')
@@ -107,12 +106,12 @@ export class AuthService {
   }
 
   /**
-     * Create a new user
-     *
-     * @param  {Object}   user     - user info
-     * @param  {Function} callback - optional, function(error, user)
-     * @return {Promise}
-     */
+   * Create a new user
+   *
+   * @param  {Object}   user     - user info
+   * @param  {Function} callback - optional, function(error, user)
+   * @return {Promise}
+   */
   createUser(user, callback) {
     return this.UserService
       .create(user)
@@ -133,46 +132,52 @@ export class AuthService {
   }
 
   /**
-     * Change password
-     *
-     * @param  {String}   oldPassword
-     * @param  {String}   newPassword
-     * @param  {Function} [callback] - function(error, user)
-     * @return {Promise}
-     */
+   * Change password
+   *
+   * @param  {String}   oldPassword
+   * @param  {String}   newPassword
+   * @param  {Function} [callback] - function(error, user)
+   * @return {Promise}
+   */
   changePassword(oldPassword, newPassword, callback) {
     return this.UserService
       .changePassword({ id: this.currentUser._id }, oldPassword, newPassword)
       .toPromise()
-      .then(() => safeCb(callback)(null))
-      .catch((err) => safeCb(callback)(err))
+      .then((res) => {
+        console.log(res)
+        safeCb(callback)(null)
+      })
+      .catch((err) => {
+        console.log(err)
+        safeCb(callback)(err)
+      })
   }
 
   /**
-     * Gets all available info on a user
-     *
-     * @param  {Function} [callback] - function(user)
-     * @return {Promise}
-     */
+   * Gets all available info on a user
+   *
+   * @param  {Function} [callback] - function(user)
+   * @return {Promise}
+   */
   getCurrentUser(callback) {
     safeCb(callback)(this.currentUser)
     return Promise.resolve(this.currentUser)
   }
 
   /**
-     * Gets all available info on a user
-     *
-     * @return {Object}
-     */
+   * Gets all available info on a user
+   *
+   * @return {Object}
+   */
   getCurrentUserSync() {
     return this.currentUser
   }
 
   /**
-     * Checks if user is logged in
-     * @param {function} [callback]
-     * @returns {Promise}
-     */
+   * Checks if user is logged in
+   * @param {function} [callback]
+   * @returns {Promise}
+   */
   isLoggedIn(callback) {
     let is = !!this.currentUser._id
     safeCb(callback)(is)
@@ -180,19 +185,19 @@ export class AuthService {
   }
 
   /**
-     * Checks if user is logged in
-     * @returns {Boolean}
-     */
+   * Checks if user is logged in
+   * @returns {Boolean}
+   */
   isLoggedInSync() {
     return !!this.currentUser._id
   }
 
   /**
-     * Check if a user is an admin
-     *
-     * @param  {Function|*} [callback] - optional, function(is)
-     * @return {Promise}
-     */
+   * Check if a user is an admin
+   *
+   * @param  {Function|*} [callback] - optional, function(is)
+   * @return {Promise}
+   */
   isAdmin(callback) {
     return this.getCurrentUser().then((user) => {
       var is = user.role === 'admin'
@@ -206,10 +211,10 @@ export class AuthService {
   }
 
   /**
-     * Get auth token
-     *
-     * @return {String} - a token string used for authenticating
-     */
+   * Get auth token
+   *
+   * @return {String} - a token string used for authenticating
+   */
   getToken() {
     return localStorage.getItem('id_token')
   }

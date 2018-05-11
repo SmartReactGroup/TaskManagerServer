@@ -4,6 +4,16 @@ import User from './user.model'
 import config from '../../config/environment'
 import jwt from 'jsonwebtoken'
 
+function respondWithResult(res, statusCode) {
+  statusCode = statusCode || 200
+  return function(entity) {
+    if (entity) {
+      return res.status(statusCode).json(entity)
+    }
+    return null
+  }
+}
+
 function validationError(res, statusCode) {
   statusCode = statusCode || 422
   return function(err) {
@@ -23,7 +33,6 @@ function handleError(res, statusCode) {
  * restriction: 'admin'
  */
 export function index(req, res) {
-  console.log('==========')
   return User.find({}, '-salt -password')
     .exec()
     .then((users) => {
@@ -87,22 +96,37 @@ export function changePassword(req, res) {
   const userId = req.user._id
   const oldPass = String(req.body.oldPassword)
   const newPass = String(req.body.newPassword)
-
-  return User.findById(userId)
+  User.findById(userId)
     .exec()
     .then((user) => {
       if (user.authenticate(oldPass)) {
         user.password = newPass
-        return user
+        user
           .save()
           .then(() => {
-            res.status(204).end()
+            res.status(200).json({ message: 'Password changed successfully!!' })
           })
           .catch(validationError(res))
       } else {
-        return res.status(403).end()
+        res.status(403).json({ message: 'Old password is not correct!' })
       }
     })
+}
+
+// Upserts the given Thing in the DB at the specified ID
+export function upsert(req, res) {
+  if (req.body._id) {
+    Reflect.deleteProperty(req.body, '_id')
+  }
+  return User.findOneAndUpdate({ _id: req.params.id }, req.body, {
+    new: true,
+    upsert: true,
+    setDefaultsOnInsert: true,
+    runValidators: true
+  })
+    .exec()
+    .then(respondWithResult(res))
+    .catch(handleError(res))
 }
 
 /**

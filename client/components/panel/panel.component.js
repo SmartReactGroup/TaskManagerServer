@@ -7,6 +7,4 @@ import { Component } from '@angular/core'
   selector: 'expansion-panel',
   template: require('./panel.html'),
 })
-export class PanelComponent {
-
-}
+export class PanelComponent {}

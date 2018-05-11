@@ -49,8 +49,20 @@ export class UserService {
   changePassword(user, oldPassword, newPassword) {
     return this.AuthHttp
       .put(`/api/users/${user.id || user._id}/password`, { oldPassword, newPassword })
-      .map((res: Response) => res.json())
-      .catch(handleError)
+      .map((res: Response) => {
+        console.log(res)
+        return res.json()
+      })
+      .catch((err) => handleError(err))
+  }
+  updateUserInfo(user) {
+    return this.AuthHttp
+      .put(`/api/users/${user.id || user._id}`, user)
+      .map((res: Response) => {
+        console.log(res)
+        return res.json()
+      })
+      .catch((err) => handleError(err))
   }
   remove(user) {
     return this.AuthHttp

@@ -29,10 +29,23 @@ export class SettingsComponent {
   }
 
   changePassword(form) {
-    if (form.invalid) return
-
     this.submitted = true
+    if (form.invalid) return
+    return this.AuthService
+      .changePassword(this.user.oldPassword, this.user.newPassword)
+      .then((res) => {
+        console.log(res)
+        this.message = 'Password successfully changed.'
+      })
+      .catch((err) => {
+        console.log(err)
+        // form.password.$setValidity('mongoose', false);
+        this.errors.other = 'Incorrect password'
+        this.message = ''
+      })
+  }
 
+  updateUserInfo() {
     return this.AuthService
       .changePassword(this.user.oldPassword, this.user.newPassword)
       .then(() => {

@@ -176,7 +176,7 @@ gulp.task('inject:styl', () =>
     .src(paths.client.mainStyle)
     .pipe(
       plugins.inject(
-        gulp.src(_.union(paths.client.styles, ['!' + paths.client.mainStyle]), { read: false }).pipe(plugins.sort()),
+        gulp.src(_.union(paths.client.styles, [`!${paths.client.mainStyle}`]), { read: false }).pipe(plugins.sort()),
         {
           starttag: '/* inject:styl */',
           endtag: '/* endinject */',
@@ -302,7 +302,7 @@ gulp.task('lint:scripts:client', () =>
 )
 
 gulp.task('lint:scripts:server', () =>
-  gulp.src(_.union(paths.server.scripts, _.map(paths.server.test, (blob) => '!' + blob))).pipe(lintServerScripts())
+  gulp.src(_.union(paths.server.scripts, _.map(paths.server.test, (blob) => `!${blob}`))).pipe(lintServerScripts())
 )
 
 gulp.task('lint:scripts:clientTest', () => gulp.src(paths.client.test).pipe(lintClientScripts()))
@@ -358,7 +358,7 @@ gulp.task('watch', () => {
 gulp.task('serve', (cb) => {
   runSequence(
     'clean:tmp',
-    'lint:scripts',
+    // 'lint:scripts',
     'inject',
     'copy:fonts:dev',
     'env:dev',
@@ -538,7 +538,7 @@ gulp.task('copy:fonts:dist', () =>
 )
 
 gulp.task('copy:assets', () =>
-  gulp.src([paths.client.assets, '!' + paths.client.images]).pipe(gulp.dest(`${paths.dist}/${clientPath}/assets`))
+  gulp.src([paths.client.assets, `!${paths.client.images}`]).pipe(gulp.dest(`${paths.dist}/${clientPath}/assets`))
 )
 
 gulp.task('copy:server', () => gulp.src(['package.json'], { cwdbase: true }).pipe(gulp.dest(paths.dist)))

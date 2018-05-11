@@ -19,11 +19,8 @@ const all = {
   // Root path of server
   root: path.normalize(`${__dirname}/../../..`),
 
-  // dev client port
-  clientPort: process.env.CLIENT_PORT || 3000,
-
   // Server port
-  port: process.env.PORT || 9000,
+  port: 9000,
 
   // Server IP
   ip: process.env.IP || '0.0.0.0',

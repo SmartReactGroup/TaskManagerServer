@@ -214,25 +214,6 @@ gulp.task('webpack:dev', () => {
   const makeWebpackConfig = require('./webpack.make')
   const configs = makeWebpackConfig({ DEV: true })
   const compiler = webpack(configs)
-  // const devOptions = {
-  //   publicPath: configs.output.publicPath,
-  //   contentBase: './client/',
-  //   historyApiFallback: true,
-  //   host: '0.0.0.0',
-  //   disableHostCheck: true,
-  //   hot: true,
-  //   headers: {
-  //     'Access-Control-Allow-Origin': '*',
-  //     'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-  //   },
-  //   stats: {
-  //     modules: false,
-  //     cached: false,
-  //     colors: true,
-  //     chunk: false,
-  //     children: false
-  //   }
-  // }
   new WebpackDevServer(compiler, {
     publicPath: configs.output.publicPath,
     contentBase: './client/',

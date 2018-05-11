@@ -1,0 +1,1 @@
+"use strict";module.exports={mongo:{uri:"mongodb://localhost/server-dev"},seedDB:!1,devServer:{host:"localhost",port:8081}};

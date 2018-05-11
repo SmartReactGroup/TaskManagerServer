@@ -36,9 +36,7 @@ const all = {
   // MongoDB connection options
   mongo: {
     options: {
-      db: {
-        safe: true
-      }
+      useMongoClient: true
     }
   }
 }

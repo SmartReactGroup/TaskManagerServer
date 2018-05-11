@@ -167,7 +167,7 @@ module.exports = function makeWebpackConfig(options) {
         // Rename the file using the asset hash
         // Pass along the updated reference to your code
         // You can add here any file extension you want to get copied to your output
-        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)([\?]?.*)$/,
+        test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)([?]?.*)$/,
         use: 'file-loader'
       },
       {
@@ -226,9 +226,9 @@ module.exports = function makeWebpackConfig(options) {
         shouldPrintComment(commentContents) {
           let regex = DEV
             ? // keep `// @flow` & flow type comments in dev
-              /(@flow|^:)/
+            /(@flow|^:)/
             : // strip comments
-              false
+            false
           return regex.test(commentContents)
         }
       }
@@ -265,12 +265,6 @@ module.exports = function makeWebpackConfig(options) {
   // Add build specific plugins
   if (BUILD) {
     config.plugins.push(
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#noerrorsplugin
-      // Only emit files when there are no errors
-      new webpack.NoErrorsPlugin(),
-      // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
-      // Dedupe modules in the output
-      new webpack.optimize.DedupePlugin(),
       // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
       // Minify all javascript, switch loaders to minimizing mode
       new webpack.optimize.UglifyJsPlugin({

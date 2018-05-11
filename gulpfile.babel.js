@@ -10,6 +10,8 @@ import open from 'open'
 import gutil from 'gulp-util'
 import lazypipe from 'lazypipe'
 import nodemon from 'nodemon'
+import uglifyjs from 'uglify-es'
+import minifyCSS from 'gulp-minify-css'
 import { Server as KarmaServer } from 'karma'
 import runSequence from 'run-sequence'
 import { protractor, webdriver_update } from 'gulp-protractor'
@@ -17,7 +19,12 @@ import { Instrumenter } from 'isparta'
 import webpack from 'webpack'
 import WebpackDevServer from 'webpack-dev-server'
 
+const composer = require('gulp-uglify/composer')
+const minify = composer(uglifyjs, console)
+
 const appConfig = require('./server/config/environment/development')
+const makeWebpackConfig = require('./webpack.make')
+
 const plugins = gulpLoadPlugins()
 let config
 
@@ -194,24 +201,23 @@ gulp.task('inject:styl', () =>
     .pipe(gulp.dest(`${clientPath}/app`))
 )
 
-// function webpackCompile(options, cb) {
-//   let compiler = webpack(makeWebpackConfig(options))
+function webpackCompile(options, cb) {
+  let compiler = webpack(makeWebpackConfig(options))
 
-//   compiler.run((err, stats) => {
-//     if (err) return cb(err)
-//     plugins.util.log(
-//       stats.toString({
-//         colors: true,
-//         timings: true,
-//         chunks: options.BUILD
-//       })
-//     )
-//     cb()
-//   })
-// }
+  compiler.run((err, stats) => {
+    if (err) return cb(err)
+    plugins.util.log(
+      stats.toString({
+        colors: true,
+        timings: true,
+        chunks: options.BUILD
+      })
+    )
+    cb()
+  })
+}
 
 gulp.task('webpack:dev', () => {
-  const makeWebpackConfig = require('./webpack.make')
   const configs = makeWebpackConfig({ DEV: true })
   const compiler = webpack(configs)
   new WebpackDevServer(compiler, {
@@ -266,7 +272,7 @@ gulp.task('env:prod', (cb) => {
   cb()
 })
 
-// gulp.task('webpack:dist', (cb) => webpackCompile({ BUILD: true }, cb))
+gulp.task('webpack:dist', (cb) => webpackCompile({ BUILD: true }, cb))
 // gulp.task('webpack:test', (cb) => webpackCompile({ TEST: true }, cb))
 
 gulp.task('transpile:server', () =>
@@ -312,9 +318,10 @@ gulp.task('start:server', () => {
 })
 
 gulp.task('start:server:prod', () => {
-  process.env.NODE_ENV = process.env.NODE_ENV || 'production'
+  process.env.NODE_ENV = 'production'
   config = require(`./${paths.dist}/${serverPath}/config/environment`)
-  nodemon(`-w ${paths.dist}/${serverPath} ${paths.dist}/${serverPath}`).on('log', onServerLog)
+  require(`./${paths.dist}/${serverPath}`)
+  // nodemon(`-w ${paths.dist}/${serverPath} ${paths.dist}/${serverPath}`).on('log', onServerLog)
 })
 
 gulp.task('start:server:debug', () => {
@@ -444,6 +451,7 @@ gulp.task('build', (cb) => {
     ['build:images'],
     ['copy:extras', 'copy:assets', 'copy:fonts:dist', 'copy:server', 'webpack:dist'],
     'revReplaceWebpack',
+    'compile',
     cb
   )
 })
@@ -524,10 +532,27 @@ gulp.task('copy:assets', () =>
 
 gulp.task('copy:server', () => gulp.src(['package.json'], { cwdbase: true }).pipe(gulp.dest(paths.dist)))
 
+gulp.task('minify:scripts', () => gulp
+  .src([
+    './dist/**/*.js'
+  ])
+  .pipe(minify())
+  .on('error', err => gutil.log(gutil.colors.red('[Error]'), err.toString()))
+  .pipe(gulp.dest(file => file.base))
+)
+
+gulp.task('minify:css', () => gulp
+  .src('./dist/**/*.css')
+  .pipe(minifyCSS())
+  .pipe(gulp.dest(file => file.base))
+)
+
+// Compile source code
+gulp.task('compile', ['minify:scripts', 'minify:css'])
+
 /********************
  * Grunt ported tasks
  ********************/
-
 grunt.initConfig({
   buildcontrol: {
     options: {

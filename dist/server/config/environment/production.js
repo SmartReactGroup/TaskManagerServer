@@ -1,0 +1,1 @@
+"use strict";module.exports={ip:process.env.OPENSHIFT_NODEJS_IP||process.env.ip||void 0,port:9e3,mongo:{uri:process.env.MONGODB_URI||process.env.MONGOHQ_URL||process.env.OPENSHIFT_MONGODB_DB_URL+process.env.OPENSHIFT_APP_NAME||"mongodb://localhost/server"}};

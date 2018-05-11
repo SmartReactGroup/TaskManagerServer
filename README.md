@@ -2,14 +2,30 @@
 
 ## Getting Started
 
-### Prerequisites
+## Built with
 
-- [Node](http://nodejs.com/) (at least v8)
-- [Gulp](http://gulpjs.com/) (`npm install --global gulp`)
-- [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod`
+- [`Angular2`](https://angular.io/)
+- [`Nodejs`](https://nodejs.org)
+- [`Mongodb`](https://www.mongodb.com/)
+- [`gulp`](https://gulpjs.com/)
+- [`Webpack`](https://webpack.github.io/docs/)
+
+### Quick start
+
+- Run `npm start` or `yarn start`, application will start on: `http://localhost:9000`
 
 ### Developing
 
-1. Run `npm install` or `yarn install` to install server dependencies.
+- Run `npm install` or `yarn install` to install server dependencies.
 
-2. Run `npm run dev` or `gulp serve` to start the development server. It should automatically open the client in your browser when ready.
+- Run `npm run dev` or `yarn dev` or `gulp serve` to start the development server. It should automatically open the client in your browser when ready.
+
+### Production
+
+- Run `npm run build` or `gulp build` to build the source
+- Run `npm start` or `yarn start`, application will start on: `http://localhost:9000`
+
+
+## Developers
+
+<img alt="Kenny" src="https://avatar-cdn.atlassian.com/2cc88cd37d6c1381a46a597922cb11e5" width="100">

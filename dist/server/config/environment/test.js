@@ -1,0 +1,1 @@
+"use strict";module.exports={mongo:{uri:"mongodb://localhost/server-test"},sequelize:{uri:"sqlite://",options:{logging:!1,storage:"test.sqlite",define:{timestamps:!1}}},port:"9001"};

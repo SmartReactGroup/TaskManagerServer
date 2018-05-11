@@ -1,0 +1,1 @@
+"use strict";module.exports[404]=function(t,s){var u={status:404};s.status(u.status),s.render("404",{},function(t,n){if(t)return s.status(u.status).json(u);s.send(n)})};

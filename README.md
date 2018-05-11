@@ -4,7 +4,7 @@
 
 ### Prerequisites
 
-- [Git](https://git-scm.com/)
+- [Node](http://nodejs.com/)
 - [Gulp](http://gulpjs.com/) (`npm install --global gulp`)
 - [MongoDB](https://www.mongodb.org/) - Keep a running daemon with `mongod`
 

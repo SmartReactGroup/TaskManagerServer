@@ -46,32 +46,37 @@
 
 <div class="navbar">
   <nav class="docs-navbar-header">
-    <a aria-label="Angular Material" class="docs-button mat-button" mat-button="" routerlink="/" tabindex="0" aria-disabled="false"
-      href="/">
+    <a aria-label="Angular Material" class="docs-button mat-button brand" routerLink="/" tabindex="0" aria-disabled="false">
       <span class="mat-button-wrapper">
-        <span>Taker</span>
+        <span>Task Manager</span>
       </span>
       <div class="mat-button-ripple mat-ripple" matripple=""></div>
-      <div class="mat-button-focus-overlay"></div>
     </a>
     <div class="lef-items" *ngFor="let item of menu" routerLinkActive="active">
-      <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false"
-        routerLink="{{item.link}}">{{item.title}}</a>
+      <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" tabindex="0" aria-disabled="false" routerLink="{{item.link}}">{{item.title}}</a>
       <div class="mat-button-ripple mat-ripple" matripple=""></div>
       <div class="mat-button-focus-overlay"></div>
     </div>
     <div class="flex-spacer"></div>
 
     <a aria-label="GitHub Repository" class="docs-button docs-navbar-hide-small mat-button" href="https://github.com/angular/material2"
-      mat-button="" tabindex="0" aria-disabled="false">
+      tabindex="0" aria-disabled="false">
       <span class="mat-button-wrapper"> GitHub </span>
       <div class="mat-button-ripple mat-ripple" matripple=""></div>
       <div class="mat-button-focus-overlay"></div>
     </a>
-    <a aria-label="GitHub Repository" class="docs-button docs-navbar-show-small mat-icon-button" href="https://github.com/angular/material2"
-      mat-icon-button="" tabindex="0" aria-disabled="false">
-      <span class="mat-button-wrapper">
+    <a aria-label="GitHub Repository" class="docs-button docs-navbar-show-small mat-icon-button" routerLink="/login" mat-icon-button=""
+      tabindex="0" aria-disabled="false">
+      <span class="mat-button-wrapper" [hidden]="currentUser._id">
+        <mat-icon>account_circle</mat-icon>
       </span>
+      <!-- <span class="mat-button-wrapper" [hidden]="!currentUser._id"> -->
+        <button mat-button [matMenuTriggerFor]="matMenu">{{currentUser.name}}</button>
+        <mat-menu #matMenu="matMenu">
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+      <!-- </span> -->
       <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
       <div class="mat-button-focus-overlay"></div>
     </a>

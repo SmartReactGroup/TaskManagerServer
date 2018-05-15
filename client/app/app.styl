@@ -1,9 +1,14 @@
+// Variables
 $fa-font-path = '../assets/fonts/font-awesome/'
-@import '~font-awesome-stylus/index'
+$theme-color = #4393B9
+$common-content-padding = 16px
+$common-content-margin = 0 100px
 
 // App-wide Styles
 .main
-  margin-top: 56px
+  margin-top: 60px
+  display: flex
+  flex-direction: column
 
 .browserupgrade
   background #ccc
@@ -11,10 +16,15 @@ $fa-font-path = '../assets/fonts/font-awesome/'
   margin 0.2em 0
   padding 0.2em 0
 
+.container
+  margin: $common-content-margin
+  padding: $common-content-padding
+
 [hidden]
   display: none !important
 
 // Component styles are injected through gulp
+@import '~font-awesome-stylus/index'
 /* inject:styl */
 @import 'admin/admin';
 @import 'document/document';

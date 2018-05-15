@@ -1,6 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
-  "editor.fontFamily": "Menlo, 'Courier New', monospace",
+  // "editor.fontFamily": "Menlo, 'Courier New', monospace",
   "editor.tabSize": 2,
   "editor.detectIndentation": false,
   "editor.renderWhitespace": "all",

@@ -10,8 +10,20 @@
   display: flex
   flex-wrap: wrap
   align-items: center
-  padding: 8px 16px
+  padding: 10px 16px
+  margin: $common-content-margin
+  .brand
+    padding-right: 50px
+    font-size: 25px
+    color: $theme-color
+    font-weight: 600
   .lef-items
     display: inline-flex
     &.active
       background-color: rgba(0,0,0,.12)
+
+.flex-spacer
+  flex-grow: 1
+
+.cdk-overlay-pane
+  top: 60px

@@ -3,12 +3,13 @@ import { BrowserModule } from '@angular/platform-browser'
 import { Http, HttpModule, BaseRequestOptions, RequestOptions, RequestOptionsArgs } from '@angular/http'
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-
 import { RouterModule, Routes } from '@angular/router'
 import { AuthHttp, AuthConfig } from 'angular2-jwt'
+
 import { AppComponent } from './app.component'
 import { MainModule } from './main/main.module'
 import { DirectivesModule } from '../components/directives.module'
+
 import { AccountModule } from './account/account.module'
 import { AdminModule } from './admin/admin.module'
 import { DocumentModule } from './document/document.module'
@@ -59,8 +60,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpModule,
-
-    RouterModule.forRoot(appRoutes, { enableTracing: process.env.NODE_ENV === 'development' }),
+    RouterModule.forRoot(appRoutes, { enableTracing: false }),
 
     BrowserAnimationsModule,
     MainModule,
@@ -80,8 +80,8 @@ export class AppModule {
 
   hmrOnInit(store) {
     if (!store || !store.state) return
-    console.log('HMR store', store)
-    console.log('store.state.data:', store.state.data)
+    // console.log('HMR store', store)
+    // console.log('store.state.data:', store.state.data)
     // inject AppStore here and update it
     // this.AppStore.update(store.state)
     if ('restoreInputValues' in store) {

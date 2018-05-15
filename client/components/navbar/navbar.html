@@ -1,4 +1,4 @@
-<div class="navbar navbar-default navbar-static-top">
+<!-- <div class="navbar navbar-default navbar-static-top">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" click="isCollapsed = !isCollapsed">
@@ -7,12 +7,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a href="/" class="navbar-brand"><i>TaskService</i></a>
+      <a href="/" class="navbar-brand">
+        <i>TaskService</i>
+      </a>
     </div>
     <div collapse="isCollapsed" class="navbar-collapse collapse" id="navbar-main">
       <ul class="nav navbar-nav">
         <li *ngFor="let item of menu" routerLinkActive="active">
-            <a routerLink="{{item.link}}">{{item.title}}</a>
+          <a routerLink="{{item.link}}">{{item.title}}</a>
         </li>
         <li [hidden]="!isAdmin" routerLinkActive="active">
           <a routerLink="/admin">Admin</a>
@@ -20,12 +22,59 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li [hidden]="isLoggedIn" routerLinkActive="active"><a routerLink="/signup">Sign up</a></li>
-        <li [hidden]="isLoggedIn" routerLinkActive="active"><a routerLink="/login">Login</a></li>
-        <li [hidden]="!isLoggedIn"><p class="navbar-text">Hello {{ currentUser.name }}</p> </li>
-        <li [hidden]="!isLoggedIn" routerLinkActive="active"><a routerLink="/settings"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li [hidden]="!isLoggedIn"><a (click)="logout()" style="cursor: pointer;">Log out</a></li>
+        <li [hidden]="isLoggedIn" routerLinkActive="active">
+          <a routerLink="/signup">Sign up</a>
+        </li>
+        <li [hidden]="isLoggedIn" routerLinkActive="active">
+          <a routerLink="/login">Login</a>
+        </li>
+        <li [hidden]="!isLoggedIn">
+          <p class="navbar-text">Hello {{ currentUser.name }}</p>
+        </li>
+        <li [hidden]="!isLoggedIn" routerLinkActive="active">
+          <a routerLink="/settings">
+            <span class="glyphicon glyphicon-cog"></span>
+          </a>
+        </li>
+        <li [hidden]="!isLoggedIn">
+          <a (click)="logout()" style="cursor: pointer;">Log out</a>
+        </li>
       </ul>
     </div>
   </div>
+</div> -->
+
+<div class="navbar">
+  <nav class="docs-navbar-header">
+    <a aria-label="Angular Material" class="docs-button mat-button" mat-button="" routerlink="/" tabindex="0" aria-disabled="false"
+      href="/">
+      <span class="mat-button-wrapper">
+        <span>Taker</span>
+      </span>
+      <div class="mat-button-ripple mat-ripple" matripple=""></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <div class="lef-items" *ngFor="let item of menu" routerLinkActive="active">
+      <a class="docs-navbar-hide-small docs-button mat-button ng-star-inserted" mat-button="" tabindex="0" aria-disabled="false"
+        routerLink="{{item.link}}">{{item.title}}</a>
+      <div class="mat-button-ripple mat-ripple" matripple=""></div>
+      <div class="mat-button-focus-overlay"></div>
+    </div>
+    <div class="flex-spacer"></div>
+
+    <a aria-label="GitHub Repository" class="docs-button docs-navbar-hide-small mat-button" href="https://github.com/angular/material2"
+      mat-button="" tabindex="0" aria-disabled="false">
+      <span class="mat-button-wrapper"> GitHub </span>
+      <div class="mat-button-ripple mat-ripple" matripple=""></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+    <a aria-label="GitHub Repository" class="docs-button docs-navbar-show-small mat-icon-button" href="https://github.com/angular/material2"
+      mat-icon-button="" tabindex="0" aria-disabled="false">
+      <span class="mat-button-wrapper">
+      </span>
+      <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
+      <div class="mat-button-focus-overlay"></div>
+    </a>
+  </nav>
+
 </div>

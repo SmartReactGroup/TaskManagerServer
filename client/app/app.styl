@@ -1,111 +1,15 @@
-
 $fa-font-path = '../assets/fonts/font-awesome/'
 @import '~font-awesome-stylus/index'
 
-$icon-font-path = '../assets/fonts/bootstrap/'
-// Core variables and mixins
-@import "~bootstrap-styl/bootstrap/variables"
-
-vendors ?= official
-percentage($n)
-  if $n == 0
-    0
-  else
-    unit($n * 100, "%")
-
-// Mixins
-// --------------------------------------------------
-@import "~bootstrap-styl/bootstrap/mixins/hide-text"
-@import "~bootstrap-styl/bootstrap/mixins/opacity"
-@import "~bootstrap-styl/bootstrap/mixins/image"
-@import "~bootstrap-styl/bootstrap/mixins/labels"
-@import "~bootstrap-styl/bootstrap/mixins/reset-filter"
-@import "~bootstrap-styl/bootstrap/mixins/resize"
-@import "~bootstrap-styl/bootstrap/mixins/responsive-visibility"
-@import "~bootstrap-styl/bootstrap/mixins/size"
-@import "~bootstrap-styl/bootstrap/mixins/tab-focus"
-@import "~bootstrap-styl/bootstrap/mixins/reset-text"
-@import "~bootstrap-styl/bootstrap/mixins/text-emphasis"
-@import "~bootstrap-styl/bootstrap/mixins/text-overflow"
-@import "~bootstrap-styl/bootstrap/mixins/vendor-prefixes"
-
-// Components
-@import "~bootstrap-styl/bootstrap/mixins/alerts"
-@import "~bootstrap-styl/bootstrap/mixins/buttons"
-@import "~bootstrap-styl/bootstrap/mixins/panels"
-@import "~bootstrap-styl/bootstrap/mixins/pagination"
-@import "~bootstrap-styl/bootstrap/mixins/list-group"
-@import "~bootstrap-styl/bootstrap/mixins/nav-divider"
-@import "~bootstrap-styl/bootstrap/mixins/forms"
-@import "~bootstrap-styl/bootstrap/mixins/progress-bar"
-@import "~bootstrap-styl/bootstrap/mixins/table-row"
-
-// Skins
-@import "~bootstrap-styl/bootstrap/mixins/background-variant"
-@import "~bootstrap-styl/bootstrap/mixins/border-radius"
-@import "~bootstrap-styl/bootstrap/mixins/gradients"
-
-// Layout
-@import "~bootstrap-styl/bootstrap/mixins/clearfix"
-@import "~bootstrap-styl/bootstrap/mixins/center-block"
-@import "~bootstrap-styl/bootstrap/mixins/nav-vertical-align"
-@import "~bootstrap-styl/bootstrap/mixins/grid-framework"
-@import "~bootstrap-styl/bootstrap/mixins/grid"
-
-// Reset and dependencies
-@import "~bootstrap-styl/bootstrap/normalize"
-@import "~bootstrap-styl/bootstrap/print"
-@import "~bootstrap-styl/bootstrap/glyphicons"
-
-// Core CSS
-@import "~bootstrap-styl/bootstrap/scaffolding"
-@import "~bootstrap-styl/bootstrap/type"
-@import "~bootstrap-styl/bootstrap/code"
-@import "~bootstrap-styl/bootstrap/grid"
-@import "~bootstrap-styl/bootstrap/tables"
-@import "~bootstrap-styl/bootstrap/forms"
-@import "~bootstrap-styl/bootstrap/buttons"
-
-// Components
-@import "~bootstrap-styl/bootstrap/component-animations"
-@import "~bootstrap-styl/bootstrap/dropdowns"
-@import "~bootstrap-styl/bootstrap/button-groups"
-@import "~bootstrap-styl/bootstrap/input-groups"
-@import "~bootstrap-styl/bootstrap/navs"
-@import "~bootstrap-styl/bootstrap/navbar"
-@import "~bootstrap-styl/bootstrap/breadcrumbs"
-@import "~bootstrap-styl/bootstrap/pagination"
-@import "~bootstrap-styl/bootstrap/pager"
-@import "~bootstrap-styl/bootstrap/labels"
-@import "~bootstrap-styl/bootstrap/badges"
-@import "~bootstrap-styl/bootstrap/jumbotron"
-@import "~bootstrap-styl/bootstrap/thumbnails"
-@import "~bootstrap-styl/bootstrap/alerts"
-@import "~bootstrap-styl/bootstrap/progress-bars"
-@import "~bootstrap-styl/bootstrap/media"
-@import "~bootstrap-styl/bootstrap/list-group"
-@import "~bootstrap-styl/bootstrap/panels"
-@import "~bootstrap-styl/bootstrap/responsive-embed"
-@import "~bootstrap-styl/bootstrap/wells"
-@import "~bootstrap-styl/bootstrap/close"
-
-// Components w/ JavaScript
-@import "~bootstrap-styl/bootstrap/modals"
-@import "~bootstrap-styl/bootstrap/tooltip"
-@import "~bootstrap-styl/bootstrap/popovers"
-@import "~bootstrap-styl/bootstrap/carousel"
-
-// Utility classes
-@import "~bootstrap-styl/bootstrap/utilities"
-@import "~bootstrap-styl/bootstrap/responsive-utilities"
-
 // App-wide Styles
+.main
+  margin-top: 56px
+
 .browserupgrade
   background #ccc
   color #000
   margin 0.2em 0
   padding 0.2em 0
-
 
 [hidden]
   display: none !important
@@ -116,4 +20,5 @@ percentage($n)
 @import 'document/document';
 @import 'main/main';
 @import '../components/footer/footer';
+@import '../components/navbar/navbar';
 /* endinject */

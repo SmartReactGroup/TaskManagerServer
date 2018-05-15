@@ -2,7 +2,7 @@
 // http://karma-runner.github.io/0.13/config/configuration-file.html
 /*eslint-env node*/
 
-const makeWebpackConfig = require('./webpack.make');
+const makeWebpackConfig = require('./webpack.make')
 
 module.exports = function(config) {
   config.set({
@@ -94,5 +94,5 @@ module.exports = function(config) {
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
     singleRun: false
-  });
-};
+  })
+}

@@ -6,9 +6,10 @@ import { RouterModule } from '@angular/router'
 import { AuthModule } from './auth/auth.module'
 import { NavbarComponent } from './navbar/navbar.component'
 import { FooterComponent } from './footer/footer.component'
+import { MaterialModule } from './material/material.module'
 
 @NgModule({
-  imports: [CommonModule, CollapseModule, AuthModule, RouterModule],
+  imports: [CommonModule, CollapseModule, AuthModule, RouterModule, MaterialModule],
   declarations: [NavbarComponent, FooterComponent],
   exports: [NavbarComponent, FooterComponent]
 })

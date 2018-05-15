@@ -1,1 +1,78 @@
-{}
+// Place your settings in this file to overwrite the default settings
+{
+  "editor.fontFamily": "Menlo, 'Courier New', monospace",
+  "editor.tabSize": 2,
+  "editor.detectIndentation": false,
+  "editor.renderWhitespace": "all",
+  "files.trimTrailingWhitespace": true,
+  "editor.renderIndentGuides": true,
+  // Controls if quick suggestions should show up while typing
+  "editor.quickSuggestions": true,
+  // Controls if suggestions should be accepted with "Enter" - in addition to "Tab". Helps to avoid ambiguity between inserting new lines and accepting suggestions.
+  "editor.acceptSuggestionOnEnter": "smart",
+  // Controls the delay in ms after which quick suggestions will show up.
+  "editor.quickSuggestionsDelay": 10,
+  // Enable word based suggestions
+  "editor.wordBasedSuggestions": true,
+  // Enable parameter hints
+  "editor.parameterHints": true,
+  "window.zoomLevel": 0,
+  "workbench.colorTheme": "Sunburst",
+  "search.exclude": {
+    "**/.git": true,
+    "**/.tmp": true,
+    "**/lib": true,
+    "**/dist": true,
+    "**/dev": true,
+    "**/public/assets": true
+  },
+  "material-icon-theme.showWelcomeMessage": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "javascript.validate.enable": false,
+  "material-icon-theme.folders.theme": "classic",
+  // "prettier.jsxSingleQuote": true,
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "prettier.jsonEnable": [
+    "json"
+  ], // Will disable Prettier Misc on JSON files
+  "prettier.cssEnable": [
+    "css",
+    "less",
+    "scss",
+    "postcss"
+  ],
+  "prettier.openOutput": false,
+  "prettier.bracketSpacing": false,
+  "prettier.semi": false,
+  "explorer.confirmDragAndDrop": false,
+  "files.associations": {
+    ".eslintrc": "jsonc"
+  },
+  "eslint.autoFixOnSave": true,
+  "eslint.validate": [
+    {
+      "language": "html",
+      "autoFix": true
+    },
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "javascript",
+      "autoFix": true
+    },
+    {
+      "language": "javascriptreact",
+      "autoFix": true
+    }
+  ],
+
+  // "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
+  "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+  "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+
+
+  // "prettier.alignObjectProperties": true
+}

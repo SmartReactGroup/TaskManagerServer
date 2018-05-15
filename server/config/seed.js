@@ -6,6 +6,7 @@
 'use strict'
 import Thing from '../api/thing/thing.model'
 import User from '../api/user/user.model'
+import Doc from '../api/doc/doc.model'
 import config from './environment/'
 
 export default function seedDatabaseIfNeeded() {
@@ -13,9 +14,7 @@ export default function seedDatabaseIfNeeded() {
     return Promise.resolve()
   }
 
-  let promises = []
-
-  let thingPromise = Thing.find({})
+  const thingPromise = Thing.find({})
     .remove()
     .then(() =>
       Thing.create(
@@ -53,9 +52,8 @@ export default function seedDatabaseIfNeeded() {
     )
     .then(() => console.log('finished populating things'))
     .catch((err) => console.log('error populating things', err))
-  promises.push(thingPromise)
 
-  let userPromise = User.find({})
+  const userPromise = User.find({})
     .remove()
     .then(() =>
       User.create(
@@ -76,7 +74,39 @@ export default function seedDatabaseIfNeeded() {
         .then(() => console.log('finished populating users'))
         .catch((err) => console.log('error populating users', err))
     )
-  promises.push(userPromise)
 
-  return Promise.all(promises)
+  const docPromise = Doc.find({})
+    .remove()
+    .then(() =>
+      Doc.create(
+        {
+          url: '/api/users/auth/local',
+          method: 'POST',
+          params: [{ name: 'email', type: 'string' }, { name: 'password', type: 'string' }],
+          description: 'User login API reference',
+          response: `{
+            _id: string
+            name: String,
+            email: {
+              type: String,
+              lowercase: true,
+              required: true
+            },
+            role: {
+              type: String,
+              default: 'user'
+            },
+            provider: String,
+            }`,
+          example: {}
+        }
+      )
+        .then(() => console.log('finished populating docs'))
+        .catch((err) => console.log('error populating docs', err))
+    )
+  return Promise.all([
+    thingPromise,
+    userPromise,
+    docPromise
+  ])
 }

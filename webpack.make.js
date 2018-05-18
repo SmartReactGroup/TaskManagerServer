@@ -196,7 +196,6 @@ module.exports = function makeWebpackConfig(options) {
           use: ['raw-loader', 'stylus-loader'],
         }),
         include: [
-          path.resolve(__dirname, 'node_modules/bootstrap-styl/bootstrap/*.styl'),
           path.resolve(__dirname, 'client')
         ]
       }

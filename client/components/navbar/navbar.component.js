@@ -29,22 +29,24 @@ export class NavbarComponent {
     this.AuthService = authService
     this.Router = router
     this.reset()
-    this.AuthService.currentUserChanged.subscribe((user) => {
-      this.currentUser = user
-      this.reset()
-    })
+    this.AuthService.currentUserChanged
+      .subscribe((user) => {
+        this.currentUser = user
+        this.reset()
+      })
   }
 
   reset() {
-    this.AuthService.isLoggedIn().then((is) => {
-      this.isLoggedIn = is
-    })
-    this.AuthService.isAdmin().then((is) => {
-      this.isAdmin = is
-    })
-    this.AuthService.getCurrentUser().then((user) => {
-      this.currentUser = user
-    })
+    Promise.all([
+      this.AuthService.isLoggedIn(),
+      this.AuthService.isAdmin(),
+      this.AuthService.getCurrentUser()
+    ])
+      .then((response) => {
+        this.isLoggedIn = response[0]
+        this.isAdmin = response[1]
+        this.currentUser = response[2]
+      })
   }
 
   logout() {

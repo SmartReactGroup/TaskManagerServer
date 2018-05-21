@@ -10,14 +10,17 @@ export class NavbarComponent {
   isCollapsed = true
   menu = [
     {
-      title: 'Home',
-      link: '/home'
-    },
-    {
       title: 'API Documentation',
       link: '/document'
     }
   ]
+  config = {
+    logo: {
+      src: '/assets/images/svg/github-logo.svg',
+      width: 18,
+      height: 18
+    }
+  }
   Router
   isAdmin
   isLoggedIn

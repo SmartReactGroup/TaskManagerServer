@@ -144,12 +144,11 @@ export class AuthService {
       .changePassword({ id: this.currentUser._id }, oldPassword, newPassword)
       .toPromise()
       .then((res) => {
-        console.log(res)
         safeCb(callback)(null)
       })
       .catch((err) => {
         console.log(err)
-        safeCb(callback)(err)
+        return Promise.reject(err)
       })
   }
 

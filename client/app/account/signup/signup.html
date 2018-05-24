@@ -1,7 +1,8 @@
 <div class="container mt-20">
-    <div class="mb-20">
-      <p>Already have an account? <a class="theme-text-color" routerLink="/login">Login</a></p>
-    </div>
+  <mat-toolbar class="mb-20">
+    Already have an account?
+    <a class="theme-text-color ml-20" routerLink="/login">Login</a>
+  </mat-toolbar>
   <form class="form" name="form" (ngSubmit)="register(signupForm)" novalidate #signupForm="ngForm">
     <div class="form-group">
       <mat-form-field>

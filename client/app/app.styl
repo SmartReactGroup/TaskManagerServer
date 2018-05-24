@@ -4,7 +4,7 @@ $theme-color = #337ab7
 $common-body-color = #F9F9F9
 $common-error-color = #f44336
 $common-content-padding = 16px
-$common-content-margin = 0 100px
+$common-content-margin = 0 250px
 
 *
   box-sizing: border-box
@@ -16,10 +16,11 @@ body
   font-family: Roboto,"Helvetica Neue",sans-serif
   margin: 0
   padding: 0
-
+a
+  text-decoration: none;
 // App-wide Styles
 .main
-  margin-top: 56px
+  margin-top: 68px
   display: flex
   flex-direction: column
 
@@ -45,19 +46,28 @@ body
         background-color: $theme-color
     .mat-form-field-label
       color: $theme-color
-    &.ng-invalid,
-    &.mat-input-invalid,
-    &.mat-form-field-invalid
-      .mat-form-field-underline
-        .mat-form-field-ripple
-          background-color: $common-error-color
-      .mat-form-field-label
-        color: $common-error-color
+    &.ng-invalid
+      &.mat-input-invalid,
+        &.mat-form-field-invalid
+          .mat-form-field-underline
+            .mat-form-field-ripple
+              background-color: $common-error-color
+          .mat-form-field-label
+            color: $common-error-color
 
 input:-webkit-autofill,
 textarea:-webkit-autofill,
 select:-webkit-autofill
   -webkit-box-shadow: 0 0 0 30px $common-body-color inset
+
+.mat-checkbox-checked
+  &.mat-primary
+    .mat-checkbox-background
+      background-color: $theme-color
+.mat-checkbox-indeterminate
+  &.mat-primary
+    .mat-checkbox-background
+      background-color: $theme-color
 
 // .mat-raised-button
 //   color: $common-body-color
@@ -73,4 +83,5 @@ select:-webkit-autofill
 @import '../components/footer/footer';
 @import '../components/navbar/navbar';
 @import '../components/slider/slider';
+@import 'account/login/login';
 /* endinject */

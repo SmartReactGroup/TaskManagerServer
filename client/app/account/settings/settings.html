@@ -1,45 +1,39 @@
 <div class="container">
-  <div class="row">
-    <div class="col-sm-12">
-      <h1>Change Password</h1>
+  <h1>Change Password</h1>
+  <form class="form" name="form" (ngSubmit)="changePassword(form)" novalidate #form="ngForm">
+    <mat-error *ngIf="newPassword.valid && errors.other">
+      <p class="help-block">{{errors.other}}</p>
+    </mat-error>
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Current Password" type="password" name="oldPassword"
+          [(ngModel)]="user.oldPassword" required #oldPassword="ngModel" />
+          <mat-error *ngIf="!oldPassword.valid">
+            Old password is required
+          </mat-error>
+      </mat-form-field>
     </div>
-    <div class="col-md-12">
-      <form class="form" name="form" (ngSubmit)="changePassword(form)" novalidate #form="ngForm">
-        <mat-error *ngIf="newPassword.valid && errors.other">
-          <p class="help-block">{{errors.other}}</p>
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="New Password" type="password" name="newPassword"
+          [(ngModel)]="user.newPassword" required #newPassword="ngModel" minlength="3" />
+        <mat-error *ngIf="!newPassword.valid">
+          Password must be at least 3 characters.
         </mat-error>
-        <div class="form-group">
-          <mat-form-field>
-            <input matInput placeholder="Current Password" type="password" name="oldPassword"
-              [(ngModel)]="user.oldPassword" required #oldPassword="ngModel" />
-              <mat-error *ngIf="!oldPassword.valid">
-                Old password is required
-              </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field>
-            <input matInput placeholder="New Password" type="password" name="newPassword"
-              [(ngModel)]="user.newPassword" required #newPassword="ngModel" minlength="3" />
-            <mat-error *ngIf="!newPassword.valid">
-              Password must be at least 3 characters.
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <mat-form-field>
-            <input matInput placeholder="Confirm New Password" type="password" name="confirmPassword"
-              [(ngModel)]="user.confirmPassword" required #confirmPassword="ngModel" match="user.newPassword"
-              minlength="3" (keyup)="checkConfirmPassword($event)" />
-            <mat-error *ngIf="!confirmPassword.valid">
-              Password must be at least 3 characters.
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div class="form-group">
-          <button mat-raised-button type="submit">Save changes</button>
-        </div>
-      </form>
+      </mat-form-field>
     </div>
-  </div>
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Confirm New Password" type="password" name="confirmPassword"
+          [(ngModel)]="user.confirmPassword" required #confirmPassword="ngModel" match="user.newPassword"
+          minlength="3" (keyup)="checkConfirmPassword($event)" />
+        <mat-error *ngIf="!confirmPassword.valid">
+          Password must be at least 3 characters.
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <button mat-raised-button type="submit">Save changes</button>
+    </div>
+  </form>
 </div>

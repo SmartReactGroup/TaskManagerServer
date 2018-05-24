@@ -5,6 +5,7 @@ import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularcla
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { RouterModule, Routes } from '@angular/router'
 import { AuthHttp, AuthConfig } from 'angular2-jwt'
+import { FlexLayoutModule } from '@angular/flex-layout'
 
 import { AppComponent } from './app.component'
 import { MainModule } from './main/main.module'
@@ -63,6 +64,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
 
     BrowserAnimationsModule,
+    FlexLayoutModule,
     MainModule,
     DirectivesModule,
     AccountModule,

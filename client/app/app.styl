@@ -1,8 +1,16 @@
 // Variables
 $fa-font-path = '../assets/fonts/font-awesome/'
-$theme-color = #4393B9
+$theme-color = #337ab7
+$common-body-color = #F9F9F9
+$common-error-color = #f44336
 $common-content-padding = 16px
 $common-content-margin = 0 100px
+
+*
+  box-sizing: border-box
+
+.theme-text-color
+  color: $theme-color
 
 body
   font-family: Roboto,"Helvetica Neue",sans-serif
@@ -11,12 +19,13 @@ body
 
 // App-wide Styles
 .main
-  margin-top: 60px
+  margin-top: 56px
   display: flex
   flex-direction: column
-  .container
-    margin: $common-content-margin
-    padding: $common-content-padding
+
+.container
+  margin: $common-content-margin
+  padding: $common-content-padding
 
 .browserupgrade
   background #ccc
@@ -27,8 +36,36 @@ body
 [hidden]
   display: none !important
 
+.form-group
+  margin: 0 0 10px 0
+  .mat-form-field
+    width: 100%
+    .mat-form-field-underline
+      .mat-form-field-ripple
+        background-color: $theme-color
+    .mat-form-field-label
+      color: $theme-color
+    &.ng-invalid,
+    &.mat-input-invalid,
+    &.mat-form-field-invalid
+      .mat-form-field-underline
+        .mat-form-field-ripple
+          background-color: $common-error-color
+      .mat-form-field-label
+        color: $common-error-color
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill
+  -webkit-box-shadow: 0 0 0 30px $common-body-color inset
+
+// .mat-raised-button
+//   color: $common-body-color
+//   background-color: $theme-color
+
 // Component styles are injected through gulp
 @import '~font-awesome-stylus/index'
+@import '../assets/stylus/default';
 /* inject:styl */
 @import 'admin/admin';
 @import 'document/document';

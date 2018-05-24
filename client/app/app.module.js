@@ -9,7 +9,6 @@ import { AuthHttp, AuthConfig } from 'angular2-jwt'
 import { AppComponent } from './app.component'
 import { MainModule } from './main/main.module'
 import { DirectivesModule } from '../components/directives.module'
-// import { MaterialModule } from '../components/material/material.module'
 
 import { AccountModule } from './account/account.module'
 import { AdminModule } from './admin/admin.module'
@@ -64,7 +63,6 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, { enableTracing: false }),
 
     BrowserAnimationsModule,
-    // MaterialModule,
     MainModule,
     DirectivesModule,
     AccountModule,

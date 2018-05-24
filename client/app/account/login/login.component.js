@@ -1,21 +1,13 @@
-// @flow
 import { Component } from '@angular/core'
-
 import { Router } from '@angular/router'
 import { AuthService } from '../../../components/auth/auth.service'
-
-type User = {
-  name: string,
-  email: string,
-  password: string
-}
 
 @Component({
   selector: 'login',
   template: require('./login.html')
 })
 export class LoginComponent {
-  user: User = {
+  user = {
     name: '',
     email: '',
     password: ''

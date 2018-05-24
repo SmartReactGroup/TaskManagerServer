@@ -299,7 +299,9 @@ module.exports = function makeWebpackConfig(options) {
   config.plugins.push(new webpack.DefinePlugin(env))
 
   if (DEV) {
-    config.plugins.push(new webpack.HotModuleReplacementPlugin())
+    config.plugins.push(
+      new webpack.HotModuleReplacementPlugin()
+    )
     config.entry.app = [
       `webpack-dev-server/client?http://localhost:${appConfig.devServer.port}/`,
       'webpack/hot/dev-server'

@@ -5,7 +5,7 @@ import { Router } from '@angular/router'
 import { AuthService } from '../../../components/auth/auth.service'
 
 type User = {
-  name: string,
+  username: string,
   email: string,
   password: string
 }
@@ -16,7 +16,7 @@ type User = {
 })
 export class SignupComponent {
   user: User = {
-    name: '',
+    username: '',
     email: '',
     password: ''
   }
@@ -38,7 +38,7 @@ export class SignupComponent {
 
     return this.AuthService
       .createUser({
-        name: this.user.name,
+        name: this.user.username,
         email: this.user.email,
         password: this.user.password
       })

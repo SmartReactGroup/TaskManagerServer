@@ -19,24 +19,21 @@
     </a>
 
     <div class="flex-spacer"></div>
-
-    <div class="rig-items" [hidden]="isLoggedIn" routerLinkActive="active">
+    <div class="rig-items" *ngIf="!isLoggedIn" routerLinkActive="active">
       <a class="mat-button ng-star-inserted" aria-disabled="false" routerLink="/login">Login</a>
       <div class="mat-button-ripple mat-ripple" matripple=""></div>
       <div class="mat-button-focus-overlay"></div>
     </div>
 
-    <a aria-label="User" class="mat-icon-button" aria-disabled="false" [hidden]="!isLoggedIn">
+    <a aria-label="User" class="mat-button user" aria-disabled="false" *ngIf="isLoggedIn">
       <span class="mat-button-wrapper">
-        <button mat-button [matMenuTriggerFor]="matMenu">{{currentUser.name}}</button>
+        <a mat-button [matMenuTriggerFor]="matMenu">{{currentUser.name}}</a>
         <mat-menu #matMenu="matMenu">
           <button mat-menu-item routerLink="/settings">Settings</button>
           <button mat-menu-item routerLink="/admin" [hidden]="!isAdmin">Admin</button>
           <button mat-menu-item (click)="logout()">Logout</button>
         </mat-menu>
       </span>
-      <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
-      <div class="mat-button-focus-overlay"></div>
     </a>
   </div>
 </div>

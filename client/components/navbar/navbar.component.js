@@ -32,24 +32,26 @@ export class NavbarComponent {
     this.AuthService = authService
     this.Router = router
     this.reset()
-    this.AuthService.currentUserChanged
-      .subscribe((user) => {
-        this.currentUser = user
-        this.reset()
-      })
+    this.AuthService.currentUserChanged.subscribe((user) => {
+      this.currentUser = user
+      this.reset()
+    })
   }
 
+  // ngOnInit() {
+  //   this.reset()
+  //   this.AuthService.currentUserChanged.subscribe((user) => {
+  //     this.currentUser = user
+  //     this.reset()
+  //   })
+  // }
+
   reset() {
-    Promise.all([
-      this.AuthService.isLoggedIn(),
-      this.AuthService.isAdmin(),
-      this.AuthService.getCurrentUser()
-    ])
-      .then((response) => {
-        this.isLoggedIn = response[0]
-        this.isAdmin = response[1]
-        this.currentUser = response[2]
-      })
+    this.isLoggedIn = this.AuthService.isLoggedInSync()
+    this.isAdmin = this.AuthService.isAdminSync()
+    this.AuthService.getCurrentUser().then((user) => {
+      this.currentUser = user
+    })
   }
 
   logout() {

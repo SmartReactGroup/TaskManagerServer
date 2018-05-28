@@ -1,11 +1,21 @@
 'use strict'
 
+import jwt from 'jsonwebtoken'
+import multer from 'multer'
+import path from 'path'
 import User from './user.model'
 import config from '../../config/environment'
-import jwt from 'jsonwebtoken'
 
 function respondWithResult(res, statusCode) {
   statusCode = statusCode || 200
+  if (res.salt) {
+    Reflect.deleteProperty(res, 'salt')
+  }
+
+  if (res.password) {
+    Reflect.deleteProperty(res, 'password')
+  }
+
   return function(entity) {
     if (entity) {
       return res.status(statusCode).json(entity)
@@ -152,4 +162,25 @@ export function me(req, res, next) {
  */
 export function authCallback(req, res) {
   res.redirect('/')
+}
+
+
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, path.join(config.root, 'client', 'assets', 'images'))
+  },
+
+  filename(req, file, cb) {
+    const fileParams = file.originalname.split('.')
+    const fileFormat = fileParams[fileParams.length - 1]
+    cb(null, `avatar.${fileFormat}`)
+  }
+})
+
+const upload = multer({ storage }).single('avatar')
+
+export function changeUserAvatar(req, res) {
+  upload(req, res, () => {
+    console.log(req.file)
+  })
 }

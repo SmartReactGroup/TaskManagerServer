@@ -27,7 +27,9 @@
 
     <a aria-label="User" class="mat-button user" aria-disabled="false" *ngIf="isLoggedIn">
       <span class="mat-button-wrapper">
-        <a mat-button [matMenuTriggerFor]="matMenu">{{currentUser.name}}</a>
+        <a mat-button [matMenuTriggerFor]="matMenu">
+          <img alert="user" src="{{currentUser.images.avatar}}" width="{{config.avatar.width}}" height="{{config.avatar.height}}">
+        </a>
         <mat-menu #matMenu="matMenu">
           <button mat-menu-item routerLink="/settings">Settings</button>
           <button mat-menu-item routerLink="/admin" [hidden]="!isAdmin">Admin</button>

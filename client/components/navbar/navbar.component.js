@@ -19,6 +19,10 @@ export class NavbarComponent {
       src: '/assets/images/svg/github-logo.svg',
       width: 18,
       height: 18
+    },
+    avatar: {
+      width: 32,
+      height: 32
     }
   }
   Router

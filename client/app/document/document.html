@@ -1,6 +1,18 @@
 <div class="container">
   <div class="lef-nav">
-    <side-nav></side-nav>
+  <mat-list>
+    <div *ngFor="let doc of docs">
+      <h3 mat-subheader>
+        <mat-icon mat-list-icon>folder</mat-icon>
+        {{doc.name}}
+      </h3>
+      <mat-list-item *ngFor="let api of doc.apis">
+        <mat-icon mat-list-icon>note</mat-icon>
+        <h5 mat-line>{{api.name}}</h5>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </div>
+  </mat-list>
   </div>
   <div class="doc-content">
     <button mat-raised-button>Basic</button>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, OnInit, OnDestroy } from '@angular/core'
 import { Router } from '@angular/router'
 import { AuthService } from '../../../components/auth/auth.service'
 
@@ -6,7 +6,7 @@ import { AuthService } from '../../../components/auth/auth.service'
   selector: 'login',
   template: require('./login.html')
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
   user = {
     name: '',
     email: '',
@@ -21,6 +21,19 @@ export class LoginComponent {
   constructor(_AuthService_: AuthService, router: Router) {
     this.AuthService = _AuthService_
     this.Router = router
+  }
+
+  ngOnInit() {
+    this._messageInterval = setInterval(() => {
+      console.log(this.errors.login)
+      if (this.errors.login) {
+        this.errors.login = null
+      }
+    }, 1000)
+  }
+
+  ngOnDestroy() {
+    clearInterval(this._messageInterval)
   }
 
   login(form) {

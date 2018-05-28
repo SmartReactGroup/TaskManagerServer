@@ -1,6 +1,5 @@
 // @flow
 import { Injectable } from '@angular/core'
-import { Response } from '@angular/http'
 import { AuthHttp } from 'angular2-jwt'
 import { Observable } from 'rxjs/Rx'
 import 'rxjs/add/operator/map'
@@ -31,39 +30,45 @@ export class UserService {
   query(): Observable<UserType[]> {
     return this.AuthHttp
       .get('/api/users/')
-      .map((res: Response) => res.json())
+      .map((res) => res.json())
       .catch(handleError)
   }
+
   get(user = { id: 'me' }): Observable<UserType> {
     return this.AuthHttp
       .get(`/api/users/${user.id || user._id}`)
-      .map((res: Response) => res.json())
+      .map((res) => res.json())
       .catch(handleError)
   }
+
   create(user: UserType) {
     return this.AuthHttp
       .post('/api/users/', user)
-      .map((res: Response) => res.json())
+      .map((res) => res.json())
       .catch(handleError)
   }
+
   changePassword(user, oldPassword, newPassword) {
     return this.AuthHttp
       .put(`/api/users/${user.id || user._id}/password`, { oldPassword, newPassword })
-      .map((res: Response) => {
-        console.log(res)
-        return res.json()
-      })
+      .map((res) => res.json())
       .catch((err) => handleError(err))
   }
-  updateUserInfo(user) {
+
+  updateUserInfo(id, newUser) {
     return this.AuthHttp
-      .put(`/api/users/${user.id || user._id}`, user)
-      .map((res: Response) => {
-        console.log(res)
-        return res.json()
-      })
+      .put(`/api/users/${id}`, newUser)
+      .map((res) => res.json())
       .catch((err) => handleError(err))
   }
+
+  changeProfileImage(id, formdata) {
+    return this.AuthHttp
+      .post(`/api/users/${id}/avatar`, formdata)
+      .map((res) => res.json())
+      .catch((err) => handleError(err))
+  }
+
   remove(user) {
     return this.AuthHttp
       .delete(`/api/users/${user.id || user._id}`).map(() => user)

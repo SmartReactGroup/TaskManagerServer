@@ -20,6 +20,13 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
+  images: {
+    avatar: {
+      type: String,
+      default: '/assets/images/user/avatar.svg'
+    },
+    profile_background_image: String
+  },
   provider: String,
   salt: String
 })
@@ -32,6 +39,8 @@ const UserSchema = new Schema({
 UserSchema.virtual('profile').get(function() {
   return {
     name: this.name,
+    email: this.email,
+    images: this.images,
     role: this.role
   }
 })

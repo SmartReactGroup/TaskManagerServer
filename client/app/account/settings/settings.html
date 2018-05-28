@@ -36,4 +36,25 @@
       <button mat-raised-button type="submit">Save changes</button>
     </div>
   </form>
+  <h1>{{user.username}}</h1>
+  <form name="updateForm" (ngSubmit)="updateUserInfo(form)" novalidate #updateForm="ngForm">
+    <div class="form-group">
+      <mat-form-field>
+        <input matInput placeholder="Username" type="text" name="username" [(ngModel)]="user.username" required #username="ngModel"
+        />
+        <mat-error *ngIf="!oldPassword.valid">
+          Username is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-group">
+      <button mat-raised-button type="submit">Save changes</button>
+    </div>
+  </form>
+
+  <form accept="multipart/form-data">
+    <slim [options]="slimOptions">
+        <input type="file" name="avatar">
+      </slim>
+  </form>
 </div>

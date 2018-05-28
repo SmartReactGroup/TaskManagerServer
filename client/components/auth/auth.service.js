@@ -37,10 +37,7 @@ export class AuthService {
         .then((user: User) => {
           this.currentUser = user
         })
-        .catch((err) => {
-          console.log(err)
-          localStorage.removeItem('id_token')
-        })
+        .catch(() => localStorage.removeItem('id_token'))
     }
   }
 
@@ -150,6 +147,37 @@ export class AuthService {
         console.log(err)
         return Promise.reject(err)
       })
+  }
+
+  /**
+   * Change user profile
+   *
+   * @param {any} newUser
+   * @returns {Promise<{}>}
+   * @memberof AuthService
+   */
+  updateUserInfo(newUser): Promise<{}> {
+    return new Promise((resolve, reject) => {
+      this.UserService
+        .updateUserInfo(this.currentUser._id, newUser)
+        .toPromise()
+        .then((res) => {
+          this.currentUser = res
+          resolve(res)
+        })
+        .catch((err) => reject(err))
+    })
+  }
+
+  changeProfileImage(formdata) {
+    return this.UserService
+      .changeProfileImage(this.currentUser._id, formdata)
+      .toPromise()
+      .then((res) => {
+        this.currentUser.images.avatar = res.images.avatar
+        Promise.resolve()
+      })
+      .catch((err) => Promise.reject(err))
   }
 
   /**

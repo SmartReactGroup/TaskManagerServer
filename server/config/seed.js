@@ -80,25 +80,31 @@ export default function seedDatabaseIfNeeded() {
     .then(() =>
       Doc.create(
         {
-          url: '/api/users/auth/local',
-          method: 'POST',
-          params: [{ name: 'email', type: 'string' }, { name: 'password', type: 'string' }],
-          description: 'User login API reference',
-          response: `{
-            _id: string
-            name: String,
-            email: {
-              type: String,
-              lowercase: true,
-              required: true
-            },
-            role: {
-              type: String,
-              default: 'user'
-            },
-            provider: String,
-            }`,
-          example: {}
+          name: 'User',
+          apis: [
+            {
+              name: 'Login',
+              url: '/api/users/auth/local',
+              method: 'POST',
+              params: [{ name: 'email', type: 'string' }, { name: 'password', type: 'string' }],
+              description: 'User login API reference',
+              response: `{
+                _id: string
+                name: String,
+                email: {
+                  type: String,
+                  lowercase: true,
+                  required: true
+                },
+                role: {
+                  type: String,
+                  default: 'user'
+                },
+                provider: String,
+                }`,
+              example: {}
+            }
+          ]
         }
       )
         .then(() => console.log('finished populating docs'))

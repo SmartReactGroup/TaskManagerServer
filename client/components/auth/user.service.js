@@ -62,9 +62,9 @@ export class UserService {
       .catch((err) => handleError(err))
   }
 
-  changeProfileImage(id, formdata) {
+  changeProfileImage(id, formdata, query) {
     return this.AuthHttp
-      .post(`/api/users/${id}/avatar`, formdata)
+      .post(`/api/users/${id}/avatar?fieldname=${query.fieldname}`, formdata)
       .map((res) => res.json())
       .catch((err) => handleError(err))
   }

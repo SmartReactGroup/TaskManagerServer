@@ -31,6 +31,7 @@
           <img alert="user" src="{{currentUser.images.avatar}}" width="{{config.avatar.width}}" height="{{config.avatar.height}}">
         </a>
         <mat-menu #matMenu="matMenu">
+          <button mat-menu-item routerLink="/settings">{{currentUser.name}}</button>
           <button mat-menu-item routerLink="/settings">Settings</button>
           <button mat-menu-item routerLink="/admin" [hidden]="!isAdmin">Admin</button>
           <button mat-menu-item (click)="logout()">Logout</button>

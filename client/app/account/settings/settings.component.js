@@ -10,16 +10,15 @@ export class SettingsComponent {
     oldPassword: '',
     newPassword: '',
     confirmPassword: '',
-    username: ''
+    username: '',
+    avatar: ''
   }
-  oldPassword = ''
-  newPassword = ''
-  confirmPassword = ''
-  errors = { other: undefined }
+  errors = {
+    other: ''
+  }
   message = ''
   submitted = false
   AuthService
-  UserService
 
   static parameters = [AuthService]
   constructor(_AuthService: AuthService) {
@@ -49,11 +48,10 @@ export class SettingsComponent {
     // form data to post to server
     // set serviceFormat to "file" to receive an array of files
     // console.log(formdata)
-
-    this.AuthService
-      .changeProfileImage(formdata)
-      .then(() => success())
-      .catch(() => failure())
+    return this.AuthService
+      .changeProfileImage(formdata, { fieldname: slim._output.name })
+      .then(() => success('success'))
+      .catch(() => failure('failed'))
 
     // call these methods to handle upload state
     // console.log(progress, success, failure)

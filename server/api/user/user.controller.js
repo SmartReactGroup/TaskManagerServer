@@ -165,11 +165,11 @@ export function authCallback(req, res) {
 }
 
 
+// Upload profile image
 const storage = multer.diskStorage({
   destination(req, file, cb) {
     cb(null, path.join(config.root, 'client', 'assets', 'images'))
   },
-
   filename(req, file, cb) {
     const fileParams = file.originalname.split('.')
     const fileFormat = fileParams[fileParams.length - 1]
@@ -177,10 +177,20 @@ const storage = multer.diskStorage({
   }
 })
 
-const upload = multer({ storage }).single('avatar')
+const upload = multer({ storage })
 
 export function changeUserAvatar(req, res) {
-  upload(req, res, () => {
-    console.log(req.file)
+  return upload.single(req.query.fieldname)(req, res, (err) => {
+    if (err) return res.status(500).json(err)
+    return User.findById(req.params.id)
+      .exec()
+      .then((user) => {
+        user.images.avatar = `/assets/images/${req.file.filename}`
+        return user.save().then(() => res.status(200).json({
+          message: 'Upload successfully',
+          avatar: user.images.avatar
+        }))
+          .catch(validationError(res))
+      })
   })
 }

@@ -2,5 +2,3 @@ client/components/socket/primus.js
 client/app.template.html
 client/app.html
 client/**/*.html
-
-package-lock.json

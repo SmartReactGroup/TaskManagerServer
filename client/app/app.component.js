@@ -2,10 +2,6 @@ import { Component } from '@angular/core'
 
 @Component({
   selector: 'app',
-  template: `<navbar></navbar>
-    <div class="main">
-      <router-outlet></router-outlet>
-    </div>
-    <footer></footer>`
+  template: require('./_app.html')
 })
 export class AppComponent {}

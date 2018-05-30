@@ -15,8 +15,18 @@ export function main() {
   return platformBrowserDynamic().bootstrapModule(AppModule)
 }
 
+function hideLoader() {
+  setTimeout(() => {
+    document.querySelector('.loading').classList.add('hide')
+  }, 1000)
+}
+
 if (document.readyState === 'complete') {
   main()
+  hideLoader()
 } else {
-  document.addEventListener('DOMContentLoaded', main)
+  document.addEventListener('DOMContentLoaded', () => {
+    main()
+    hideLoader()
+  })
 }

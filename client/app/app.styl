@@ -1,81 +1,12 @@
-// Variables
 $fa-font-path = '../assets/fonts/font-awesome/'
-$theme-color = #337ab7
-$common-body-color = #F9F9F9
-$common-error-color = #f44336
-$common-content-padding = 16px
-$common-content-margin = 0 250px
-
-*
-  box-sizing: border-box
-
-.theme-text-color
-  color: $theme-color
-
-body
-  font-family: Roboto,"Helvetica Neue",sans-serif
-  margin: 0
-  padding: 0
-a
-  text-decoration: none;
-// App-wide Styles
-.main
-  margin-top: 68px
-  display: flex
-  flex-direction: column
-
-.container
-  margin: $common-content-margin
-  padding: $common-content-padding
-
-.browserupgrade
-  background #ccc
-  color #000
-  margin 0.2em 0
-  padding 0.2em 0
-
-[hidden]
-  display: none !important
-
-.form-group
-  margin: 0 0 10px 0
-  .mat-form-field
-    width: 100%
-    .mat-form-field-underline
-      .mat-form-field-ripple
-        background-color: $theme-color
-    .mat-form-field-label
-      color: $theme-color
-    &.ng-invalid
-      &.mat-input-invalid,
-        &.mat-form-field-invalid
-          .mat-form-field-underline
-            .mat-form-field-ripple
-              background-color: $common-error-color
-          .mat-form-field-label
-            color: $common-error-color
-
-input:-webkit-autofill,
-textarea:-webkit-autofill,
-select:-webkit-autofill
-  -webkit-box-shadow: 0 0 0 30px $common-body-color inset
-
-.mat-checkbox-checked
-  &.mat-primary
-    .mat-checkbox-background
-      background-color: $theme-color
-.mat-checkbox-indeterminate
-  &.mat-primary
-    .mat-checkbox-background
-      background-color: $theme-color
-
-// .mat-raised-button
-//   color: $common-body-color
-//   background-color: $theme-color
-
-// Component styles are injected through gulp
 @import '~font-awesome-stylus/index'
-@import '../assets/stylus/default';
+
+// Common styles
+@import '../assets/stylus/variables'
+@import '../assets/stylus/main'
+@import '../assets/stylus/default'
+@import '../assets/stylus/loader'
+
 /* inject:styl */
 @import 'account/login/login';
 @import 'admin/admin';

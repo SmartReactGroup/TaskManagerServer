@@ -1,7 +1,6 @@
 <div class="_app">
-  <navbar></navbar>
-  <div class="main">
-    <router-outlet></router-outlet>
-  </div>
-  <footer></footer>
+  <navbar [hidden]="hideHeaderAndFooter"></navbar>
+  <div class="fake-nav"></div>
+  <div class="main"><router-outlet></router-outlet></div>
+  <footer [hidden]="hideHeaderAndFooter"></footer>
 </div>

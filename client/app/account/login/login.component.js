@@ -24,16 +24,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this._messageInterval = setInterval(() => {
-      console.log(this.errors.login)
-      if (this.errors.login) {
-        this.errors.login = null
-      }
-    }, 1000)
   }
 
   ngOnDestroy() {
-    clearInterval(this._messageInterval)
   }
 
   login(form) {

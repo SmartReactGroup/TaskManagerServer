@@ -83,7 +83,7 @@ export class AppModule {
   hmrOnInit(store) {
     if (!store || !store.state) return
     // console.log('HMR store', store)
-    // console.log('store.state.data:', store.state.data)
+    console.log('store.state.data:', store.state.data)
     // inject AppStore here and update it
     // this.AppStore.update(store.state)
     if ('restoreInputValues' in store) {

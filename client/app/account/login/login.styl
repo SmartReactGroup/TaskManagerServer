@@ -1,13 +1,70 @@
-.mat-toolbar
-  &.mat-toolbar-single-row
-    font-size: 15px
+.login,
+.signup
+  .mat-input-infix
+    &.mat-form-field-infix
+      font-size: 14px
+  .mat-toolbar
+    &.mat-toolbar-single-row
+      font-size: 13px
+      padding: 0 35px
+      max-width: 450px
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 4px;
+      border-top-left-radius: 0
+      border-top-right-radius: 0
+      overflow-x: hidden;
 
-.login
-  min-height: 420px
-  max-width: 420px
-  padding: 40px
+.login-content,
+.signup-content
+  min-height: 350px
+  max-width: 450px
+  padding: 25px 35px 25px 35px
   background-color: $common-body-color
   margin-left: auto
   margin-right: auto
   border-radius: 4px
+  border-bottom-left-radius: 0
+  border-bottom-right-radius: 0
   overflow-x: hidden
+  .login-logo
+    &:hover
+      cursor: pointer
+
+.login-form
+  .options
+    margin-top: -10px
+    font-size: 13px
+    .remember
+      float: right
+      .mat-checkbox-label
+        margin-top: 1px
+  .login-btn
+    clear: both
+    margin-top: 70px
+    .mat-raised-button
+      width: 100%
+      &[ng-reflect-disabled=false]
+        background-color: $theme-color
+        color: $common-body-color
+  .mat-checkbox-inner-container
+    width: 14px
+    height: 14px
+
+.forgot
+  margin-top: 4px
+  float: left
+  &:hover
+    cursor: pointer
+
+.help-block
+  color: $common-error-color
+  margin-top: 0
+  font-size: 12px
+
+.signup-btn
+  .mat-raised-button
+    width: 100%
+    &[ng-reflect-disabled=false]
+      background-color: $theme-color
+      color: $common-body-color

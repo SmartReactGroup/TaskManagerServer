@@ -47,6 +47,7 @@ export default function(app) {
     session({
       secret: config.secrets.session,
       saveUninitialized: true,
+      name: 'tms',
       resave: false,
       store: new MongoStore({
         mongooseConnection: mongoose.connection,

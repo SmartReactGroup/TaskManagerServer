@@ -1,43 +1,41 @@
-<div class="container mt-50" fxLayout="row" fxFlexFill fxLayoutAlign="space-around center">
-  <div fxFlex="30"></div>
-  <div fxFlex="40" class="login">
-    <div class="mb-30">
-      <mat-toolbar>
-        Do not have an account?
-        <a class="theme-text-color ml-20" routerLink="/signup">Register</a>
-      </mat-toolbar>
+<div class="container login mt-50" fxLayout="row" fxFlexFill fxLayoutAlign="space-around center">
+  <div fxFlex="35"></div>
+  <div fxFlex="30">
+    <div class="login-content">
+      <div class="mb-30">
+        <h1 class="theme-text-color" style="text-align: center">
+          <span class="login-logo" routerLink="/">Task Manger</span>
+        </h1>
+      </div>
+      <form class="login-form" name="loginForm" (ngSubmit)="login(loginForm)" novalidate #loginForm="ngForm">
+        <div class="form-group" *ngIf="errors.login">
+          <mat-error>{{errors.login}}</mat-error>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput placeholder="Email" type="email" name="email"
+              [(ngModel)]="user.email" #email="ngModel" required />
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput placeholder="password" type="password" name="password"
+              [(ngModel)]="user.password" #password="ngModel" required />
+          </mat-form-field>
+        </div>
+        <div class="form-group options">
+          <span class="forgot">Forgot password?</span>
+          <mat-checkbox class="remember" color="primary">Remember me!</mat-checkbox>
+        </div>
+        <div class="form-group login-btn">
+          <button mat-raised-button type="submit" [disabled]="!loginForm.form.valid">Login</button>
+        </div>
+      </form>
     </div>
-    <form class="login-form" name="loginForm" (ngSubmit)="login(loginForm)" novalidate #loginForm="ngForm">
-      <div class="form-group" *ngIf="errors.login">
-        <mat-error>{{errors.login}}</mat-error>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="Email" type="email" name="email"
-            [(ngModel)]="user.email" #email="ngModel" required />
-          <mat-error *ngIf="!email.valid">Email is required</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-group">
-        <mat-form-field>
-          <input matInput placeholder="password" type="password" name="password"
-            [(ngModel)]="user.password" #password="ngModel" required />
-          <mat-error *ngIf="!email.valid">Password is required</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="form-group has-error">
-        <p class="help-block" [hidden]="(email.value && password.value) || !loginForm.submitted">
-          Please enter your email and password.
-        </p>
-        <p class="help-block" [hidden]="email.valid || (email.pristine && !loginForm.submitted)">
-          Please enter a valid email.
-        </p>
-      </div>
-      <div class="form-group mt-w0">
-        <button mat-raised-button type="submit" [disabled]="!loginForm.form.valid">Login</button>
-        <mat-checkbox class="ml-30" color="primary">Remember me on this computer!</mat-checkbox>
-      </div>
-    </form>
+    <mat-toolbar>
+      New to <span class="theme-text-color ml-5" routerLink="/"> Task Manager</span>?
+      <a class="theme-text-color ml-10" routerLink="/signup">Register</a>
+    </mat-toolbar>
   </div>
-  <div fxFlex="30"></div>
+  <div fxFlex="35"></div>
 </div>

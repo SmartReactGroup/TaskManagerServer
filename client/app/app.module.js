@@ -14,6 +14,7 @@ import { DirectivesModule } from '../components/directives.module'
 import { AccountModule } from './account/account.module'
 import { AdminModule } from './admin/admin.module'
 import { DocumentModule } from './document/document.module'
+import { ChatModule } from './chat/chat.module'
 
 import constants from './app.constants'
 
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
     DirectivesModule,
     AccountModule,
     AdminModule,
-    DocumentModule
+    DocumentModule,
+    ChatModule
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent]

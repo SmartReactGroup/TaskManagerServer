@@ -1,9 +1,8 @@
-'use strict'
-/*eslint no-invalid-this:0*/
 import crypto from 'crypto'
 mongoose.Promise = require('bluebird')
 import mongoose, { Schema } from 'mongoose'
 import { registerEvents } from './user.events'
+import { default_data } from '../config'
 
 const UserSchema = new Schema({
   name: String,
@@ -20,20 +19,18 @@ const UserSchema = new Schema({
     type: String,
     required: true
   },
-  images: {
-    avatar: {
-      type: String,
-      default: '/assets/images/user/avatar.svg'
-    },
-    profile_background_image: String
+  avatar: {
+    type: String,
+    default: default_data.profile_avatar
   },
+  profile_background_image: String,
   provider: String,
-  salt: String
+  salt: String,
+  dialogs: [{
+    type: Schema.ObjectId,
+    ref: 'Dialog'
+  }]
 })
-
-/**
- * Virtuals
- */
 
 // Public profile information
 UserSchema.virtual('profile').get(function() {
@@ -56,7 +53,6 @@ UserSchema.virtual('token').get(function() {
 /**
  * Validations
  */
-
 // Validate empty email
 UserSchema.path('email').validate(function(email) {
   return email.length

@@ -185,10 +185,11 @@ export function changeUserAvatar(req, res) {
     return User.findById(req.params.id)
       .exec()
       .then((user) => {
-        user.images.avatar = `/assets/images/${req.file.filename}`
+        const urlPrefix = `http://${config.host}:${config.port}`
+        user.avatar = `${urlPrefix}/assets/images/${req.file.filename}`
         return user.save().then(() => res.status(200).json({
           message: 'Upload successfully',
-          avatar: user.images.avatar
+          avatar: user.avatar
         }))
           .catch(validationError(res))
       })

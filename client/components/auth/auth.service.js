@@ -174,7 +174,7 @@ export class AuthService {
       .changeProfileImage(this.currentUser._id, formdata, query)
       .toPromise()
       .then((res) => {
-        this.currentUser.images.avatar = `${res.avatar}?${new Date().getTime()}`
+        this.currentUser.avatar = `${res.avatar}?${new Date().getTime()}`
         Promise.resolve()
       })
       .catch((err) => Promise.reject(err))

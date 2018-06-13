@@ -10,8 +10,12 @@ export class NavbarComponent {
   isCollapsed = true
   menu = [
     {
-      title: 'API Documentation',
+      title: 'API',
       link: '/document'
+    },
+    {
+      title: 'Chat',
+      link: '/chat'
     }
   ]
   config = {

@@ -19,6 +19,7 @@ const all = {
   // Root path of server
   root: path.normalize(`${__dirname}/../../..`),
 
+  host: '127.0.0.1',
   // Server port
   port: 9000,
 
